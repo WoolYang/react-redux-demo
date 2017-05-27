@@ -1,15 +1,21 @@
 import React from 'react';
 
-import './menu.less';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from '../actions/action';
 
-class Menu extends React.Component {
+
+class Article extends React.Component {
 
     render() {
-        const { menu, actions } = this.props;
-        const { hideState } = menu;
-
+          const { menu, actions } = this.props;
+      //  const { hideState } = menu;
+            console.log(menu)
         return (
-            <div className="sideNav" style={this.props.style}>
+            <div style={{textAlign:'center'}}>
+                <span>page1</span>
+            </div>
+/*            <div className="sideNav" style={this.props.style}>
                 <ul id={this.props.id} className={this.props.className}>
 
                 </ul>
@@ -26,9 +32,18 @@ class Menu extends React.Component {
                         <span className={hideState?"glyphicon glyphicon-circle-arrow-right":"glyphicon glyphicon-circle-arrow-left"}></span>
                     </a>
                 </div>
-            </div>
+            </div>*/
         )
     }
 }
 
-module.exports = Menu;
+const mapStateToProps = state => ({
+    menu: state.menu
+});
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Article);
+//module.exports = Article;

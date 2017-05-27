@@ -4,8 +4,7 @@ const initialState = {
         domain: 'wool',
         refMachineCode: '111',
         _user_name: 'wool',
-        batchPrintState: false,
-        isMain: true,//判断是否为主账号
+        isMain: true
 };
 
 export default (state = initialState, action) => {

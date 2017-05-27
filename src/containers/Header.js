@@ -1,22 +1,28 @@
 import React from 'react';
 
-import DropMenu from'../dropMenu/dropMenu.js';
+import { Link } from 'react-router-dom'
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from '../actions/action';
+
 import './header.less';
 
 class Header extends React.Component {
 
     render() {
 
-      const { header, actions  } = this.props;
+     // const { header, actions  } = this.props;
       //const { domain,  _user_name, toggle , isMain} = header;
 
         return (
             <div className="navbar">
                 <div className="navbar-header">
-                    <a className="navbar-brand" href="javascript:;">
-                        <span>test</span>
-                        <span>name：</span>
-                    </a>
+                      <ul>
+                        <li><Link to="/">Header</Link></li>
+                        <li><Link to="/article">Article</Link></li>
+                        <li><Link to="/info">Info</Link></li>
+                      </ul>
                 </div>
             {/*    <div className="pull-right pull-right-style" onClick={actions.headerAction.bind(this, !toggle)} >
                     <span className="navbar-text">
@@ -33,4 +39,13 @@ class Header extends React.Component {
     }
 }
 
-module.exports = Header;
+const mapStateToProps = state => ({
+    header: state.menu
+});
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+//module.exports = Header;
