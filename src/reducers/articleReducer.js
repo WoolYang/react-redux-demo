@@ -1,18 +1,15 @@
 
-const initialState = {
-        open: false,
-};
-
-export default (state = initialState, action) => {
+export default (state = [], action) => {
     let newState
 
     switch (action.type) {
 
-      case 'OPEN_MENU':
+      case 'RECEIVE_ARTICLE_LIST':
             newState = Object.assign({}, state, {
-            open: action.text
+            data: action.json
           })
 
+          console.log(newState)
           return newState;
 
       default:

@@ -4,40 +4,41 @@ import { connect } from 'react-redux';
 
 import { BrowserRouter, Route, HashRouter, Match, Link, hashHistory, IndexLink  } from 'react-router-dom'
 
-/*import { bindActionCreators } from 'redux';
-import actions from '../actions/action';*/
-
 import Header from './Header.js';
-import Article from './/Article.js';
-import Info from './/Info.js';
+import Article from './Article.js';
+import Info from './Info.js';
+import Project from './Project.js';
+import MainPage from './MainPage.js';
+
+import {deepOrange500} from 'material-ui/styles/colors';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import 'normalize.css';
-import '../styles/bootstrap/css/bootstrap.min.css';
+
+/*const muiTheme = getMuiTheme({
+  palette: {
+    accent1Color: deepOrange500,
+  }
+});*/
 
 class App extends React.Component {
 
   render() {
-
-      const { header,menu, actions } = this.props;
-
       return (
-        <div className="wraper">
-        <BrowserRouter history={hashHistory} >
-          <div>
-              <Header></Header>
-              <Route exact path="/" component={Article}/>
-              <Route path="/article" component={Article}/>
-              <Route path="/info" component={Info}/>
-          </div>
-       </BrowserRouter>
-       {/*    <Header actions={actions} header={header} ></Header>
-            <div>
-              <Article actions={actions} menu={menu} ></Article>
-            </div>
-            <div>
-              <Info actions={actions} menu={menu} ></Info>
-            </div> */}
-        </div>
+          <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <HashRouter history={hashHistory} >
+              <div>
+                  <Header></Header>
+                  <Route exact path="/" component={MainPage}/>
+                  <Route path="/blog/article" component={Article}/>
+                  <Route path="/blog/info" component={Info}/>
+                  <Route path="/blog/project" component={Project}/>
+              </div>
+            </HashRouter>
+          </MuiThemeProvider>
       )
   }
 }

@@ -2,14 +2,24 @@
 
 let actions = {
 
-    headerAction: (text) => ({
-        type: 'TOGGLE',
+    openMenu: (text) => ({   //打开关闭菜单
+        type: 'OPEN_MENU',
         text
     }),
 
-    menuAction: () => ({
-        type: 'ATOGGLE'
-    })
+    getArticleList: () => {
+        return function(dispatch,getState){
+        	fetch('/data/test.json')
+		    .then(response => response.json())
+		    .then(json => dispatch(receiveArticleList(json)))
+        }
+    },
+
+    receiveArticleList: (json) => {
+    	 type: 'RECEIVE_ARTICLE_LIST',
+    	 json
+    }
+
 
 };
 

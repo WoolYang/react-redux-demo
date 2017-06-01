@@ -4,10 +4,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { BrowserRouter, Route, Router, HashRouter, Match, Link, hashHistory, IndexLink  } from 'react-router-dom'
+//import "babel-polyfill";
 import App from './containers/App';
 import configureStore from './store/store';  //获取唯一的store
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 const store = configureStore();
 

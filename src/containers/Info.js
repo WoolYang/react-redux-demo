@@ -8,7 +8,7 @@ class Info extends React.Component {
 
         return (
             <div style={{textAlign:'center'}}>
-                <span>page2</span>
+                <span>关于页</span>
             </div>
         )
     }

@@ -3,17 +3,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../actions/action';
+import Catalog from '../components/Catalog/Catalog.js';
 
 
 class Article extends React.Component {
 
+    
+
+    componentWillMount() {
+        const { actions } = this.props;
+        actions.getArticleList();
+    }
+
     render() {
-          const { menu, actions } = this.props;
-      //  const { hideState } = menu;
-            console.log(menu)
+         console.log(this.props)
+
         return (
             <div style={{textAlign:'center'}}>
-                <span>page1</span>
+                <span>文章页</span>
+                <Catalog></Catalog>
             </div>
 /*            <div className="sideNav" style={this.props.style}>
                 <ul id={this.props.id} className={this.props.className}>
@@ -38,7 +46,7 @@ class Article extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    menu: state.menu
+    articleData: state.articleData
 });
 
 const mapDispatchToProps = dispatch => ({

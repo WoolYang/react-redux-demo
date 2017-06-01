@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import headerReducer from './headerReducer';
-import menuReducer from './menuReducer';
+import articleReducer from './articleReducer';
 
 const rootReducer = combineReducers({
-    header: headerReducer,
-    menu: menuReducer
+    headerData: headerReducer,
+    articleData:articleReducer
 });
 
 export default rootReducer;
