@@ -11,10 +11,20 @@ import MenuItem from 'material-ui/MenuItem';
 class Catalog extends React.Component {
 
     render() {
+    	const {articleData} = this.props;
 
-        return (
-            <div>1</div>
-        )
+        return (  
+        	<ul>
+        	{
+        		articleData.result.map(function(item,index){
+		        	return (  
+		        		<li key={index} >{item._id}</li>
+		       		)
+
+		        })
+        	}
+        	</ul>
+       	)
     }
 }
 

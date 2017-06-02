@@ -5,7 +5,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
     let newState
-
     switch (action.type) {
 
       case 'OPEN_MENU':
@@ -16,7 +15,6 @@ export default (state = initialState, action) => {
           return newState;
 
       default:
-
           return state;
 
     }

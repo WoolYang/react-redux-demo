@@ -1,19 +1,20 @@
 
-export default (state = [], action) => {
-    let newState
+const initialState = {
+        status: 1,
+        result:[]
+};
 
+export default (state = initialState, action) => {
+    let newState
     switch (action.type) {
 
       case 'RECEIVE_ARTICLE_LIST':
-            newState = Object.assign({}, state, {
-            data: action.json
-          })
-
-          console.log(newState)
+            newState = Object.assign({},state,
+            action.json
+          )
           return newState;
 
       default:
-
           return state;
 
     }

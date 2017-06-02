@@ -16,7 +16,7 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import 'normalize.css';
+import 'normalize.css';    /* 重置浏览器默认样式 */
 
 /*const muiTheme = getMuiTheme({
   palette: {
