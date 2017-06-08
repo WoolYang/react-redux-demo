@@ -14,6 +14,12 @@ export default (state = initialState, action) => {
           )
           return newState;
 
+      case 'RECEIVE_ARTICLE_DETAIL':
+            newState = Object.assign({},state,
+            action.json
+          )
+          return newState;
+
       default:
           return state;
 

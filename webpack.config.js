@@ -9,6 +9,7 @@ module.exports = {
     entry: __dirname + '/src/index.js', //唯一入口文件
     output: {
         path: __dirname + '/build', //打包后的文件存放的地方
+        publicPath:'/',
         filename: 'bundle.js' //打包后输出文件的文件名
     },
 
@@ -42,7 +43,7 @@ module.exports = {
             },
             {
               test: /\.(png|jpg|jpeg|gif)$/,
-              loader: 'url-loader?limit=30000'
+              loader: 'url-loader?limit=30000&name=assets/images/[hash].[ext]'
             },
             {
               test: /\.(svg|ttf|eot|svg|woff(\(?2\)?)?)(\?[a-zA-Z_0-9.=&]*)?(#[a-zA-Z_0-9.=&]*)?$/,

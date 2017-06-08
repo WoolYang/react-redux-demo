@@ -18,9 +18,20 @@ let actions = {
     receiveArticleList: (json) => ({  //接收文章列表
     	 type: 'RECEIVE_ARTICLE_LIST',
     	 json
+    }),
+
+    getArticleDetail: (dispatch) => {  //获取文章列表
+        return (dispatch) => {
+            fetch('/data/detail.json')
+            .then(response => response.json())
+            .then(json => dispatch(actions.receiveArticleDetail(json)))
+        }
+    },
+
+    receiveArticleDetail: (json) => ({  //接收文章列表
+         type: 'RECEIVE_ARTICLE_DETAIL',
+         json
     })
-
-
 };
 
 export default actions;

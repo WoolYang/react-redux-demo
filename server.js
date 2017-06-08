@@ -1,26 +1,20 @@
-var express = require('express');
-var path = require('path');
-//var favicon = require('serve-favicon');
-//var logger = require('morgan');
-//var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var http = require('http');
-
-var webpack = require('webpack');
-
-//ar blog = require('./routes/blog');
-//var routes = require('./routes/index');
-//var users = require('./routes/users');
-
+var express = require('express');          //引入express
+var path = require('path');                //引入根目录
+var favicon = require('serve-favicon');  //引入favicon解析
+var bodyParser = require('body-parser');  //引入body-parser
+var http = require('http');     //引入http模块
+var webpack = require('webpack');  //引入webpack
+var router = require('./server/router/index')  //restful路由索引
 var app = express();
 
-// view engine setup
 app.set('port', process.env.PORT || 3000);
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
+//var logger = require('morgan');
 //app.use(logger('dev'));
 //
 //生产环境热替换暂时这么写
@@ -40,11 +34,11 @@ app.use(webpackHotMiddleware(compiler));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(cookieParser());
+//定义资源文件
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // 定义所有的增删改查的借口
-//app.use('/', routes);
+app.use('/api/articleList', router.articleList);
 //app.get('/blog', blog.list);
 //app.get('/blog/:id', blog.get);  
 // app.delete('/comments/:id', blog.delete);

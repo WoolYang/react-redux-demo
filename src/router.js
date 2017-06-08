@@ -1,19 +1,35 @@
 import React from 'react';
-import { BrowserRouter, Route, Router, HashRouter, Match, Link, hashHistory, IndexLink  } from 'react-router-dom'
+import { BrowserRouter, Route, Router, HashRouter, Match, Link, hashHistory, IndexLink ,Switch } from 'react-router-dom'
 import App from './containers/App';
 
-class routes extends React.Component {
+import Header from './containers/Header.js';
+import Article from './containers/Article.js';
+import Info from './containers/Info.js';
+import Project from './containers/Project.js';
+import MainPage from './containers/MainPage.js';
+import ArticleDetail from './components/ArticleDetail/ArticleDetail.js';
+
+class Routes extends React.Component {
+
 	render() {
 		return (
-			<Router history={hashHistory}>
-				<Route path='/' component={App}>
-					<IndexRoute component={Header}/>
-					<Route path='/arcitle' component={Article}></Route>
-					<Route path='/info' component={Info}></Route>
-				</Route>	
-			</Router>
+            <HashRouter history={hashHistory} >
+              <Route render={({ location }) => {
+              	 return(
+		              <div>
+		              	  <App>
+			              	  <Route exact path="/" component={MainPage} />
+			                  <Route path="/article" component={Article}/>
+			                  <Route path="/detail/:id" component={ArticleDetail}/>
+			                  <Route path="/info" component={Info}/>
+			                  <Route path="/project" component={Project}/>
+		                  </App>
+		              </div>
+	             )
+	          }}/>
+            </HashRouter>
 
 		)
 	}
 }
-export default routes;
+export default Routes;

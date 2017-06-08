@@ -1,29 +1,42 @@
 import React from 'react';
 
-import  './Catalog.less';
-import Drawer from 'material-ui/Drawer';
-import Subheader from 'material-ui/Subheader';
-import MenuItem from 'material-ui/MenuItem';
-//import {List, ListItem, makeSelectable} from 'material-ui/List';
+import { Link } from 'react-router-dom';
 
-//const SelectableList = makeSelectable(List);
+import  './Catalog.less';
+
+import Avatar from 'material-ui/Avatar';
+import List from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
+var icon = require('../../assets/images/icon.jpg');
 
 class Catalog extends React.Component {
 
     render() {
     	const {articleData} = this.props;
-
         return (  
-        	<ul>
+        	<List className="detail" >
         	{
         		articleData.result.map(function(item,index){
 		        	return (  
-		        		<li key={index} >{item._id}</li>
+                        <Link to={`/detail/${item._id}`} key={index} >
+    		        		<ListItem 
+                                secondaryText={
+                                    <p>{item.secondaryText}</p>
+                                }
+                                leftAvatar={
+                                    <Avatar
+                                      icon={<Avatar src={icon} />}
+                                      size={30}
+                                    />
+                                }
+                            >
+                            {item.title}</ListItem>
+                        </Link>
 		       		)
 
 		        })
         	}
-        	</ul>
+        	</List>
        	)
     }
 }

@@ -6,25 +6,24 @@ import { Provider } from 'react-redux';
 
 //import "babel-polyfill";
 import App from './containers/App';
+import Routes from './router';
 import configureStore from './store/store';  //获取唯一的store
 
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+import 'normalize.css';    /* 重置浏览器默认样式 */
+
 const store = configureStore();
+
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+    	<MuiThemeProvider muiTheme={getMuiTheme()}>
+        	<Routes />
+        </MuiThemeProvider>
     </Provider>,
     document.getElementById('app')
 );
-
-
-/*<Router history = {history}>
- <Route path="/" component={App}> 
- <IndexRedirect to="sign-in" /> 
- <Route path="sign-in" component={ Components.SignIn } /> 
- <Route path="index" component={ Components.Index } /> 
- </Route> 
- </Router>*/

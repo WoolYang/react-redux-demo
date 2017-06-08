@@ -9,36 +9,25 @@ import Article from './Article.js';
 import Info from './Info.js';
 import Project from './Project.js';
 import MainPage from './MainPage.js';
-
-import {deepOrange500} from 'material-ui/styles/colors';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import NavigationMenu from '../components/NavigationMenu/NavigationMenu.js';
 
 import 'normalize.css';    /* 重置浏览器默认样式 */
-
-/*const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: deepOrange500,
-  }
-});*/
 
 class App extends React.Component {
 
   render() {
+      const container = {
+        marginTop: "7%", marginLeft: "2%",
+        marginRight: "2%", marginBottom: "3%",backgroundColor:"white",height:"100px"
+      }
+
       return (
-          <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <HashRouter history={hashHistory} >
-              <div>
-                  <Header></Header>
-                  <Route exact path="/" component={MainPage}/>
-                  <Route path="/blog/article" component={Article}/>
-                  <Route path="/blog/info" component={Info}/>
-                  <Route path="/blog/project" component={Project}/>
-              </div>
-            </HashRouter>
-          </MuiThemeProvider>
+        <div>
+          <Header></Header>
+          <div>
+              {this.props.children}
+          </div>
+        </div>
       )
   }
 }
