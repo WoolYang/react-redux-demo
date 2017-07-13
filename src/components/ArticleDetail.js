@@ -1,16 +1,14 @@
 import React from 'react';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import actions from '../../actions/action';
+import {
+    connect
+} from 'react-redux';
+import {
+    bindActionCreators
+} from 'redux';
+import actions from '../actions/action';
 
-import  './ArticleDetail.less';
-
-import Avatar from 'material-ui/Avatar';
-import FileFolder from 'material-ui/svg-icons/file/folder';
-import FontIcon from 'material-ui/FontIcon';
-import List from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
+import '../assets/styles/articleDetail.less';
 
 class ArticleDetail extends React.Component {
 
@@ -19,9 +17,11 @@ class ArticleDetail extends React.Component {
     }
 
     render() {
-    	const {articleData} = this.props;
-        return (  
-            <div className="" >
+        const {
+            articleData
+        } = this.props;
+        return (
+            <div className="ctn-warpper" >
             {
                 articleData.result.map(function(item,index){
                     return ( 
@@ -44,4 +44,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);
-//module.exports = ArticleDetail;

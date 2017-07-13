@@ -1,45 +1,57 @@
 'use strict';
 import React from 'react';
-import { connect } from 'react-redux';
+import {
+  connect
+} from 'react-redux';
 
-import { BrowserRouter, Route, HashRouter, Match, Link, hashHistory, IndexLink  } from 'react-router-dom'
+import {
+  Link
+} from 'react-router-dom'
 
-import Header from './Header.js';
 import Article from './Article.js';
 import Info from './Info.js';
-import Project from './Project.js';
 import MainPage from './MainPage.js';
-import NavigationMenu from '../components/NavigationMenu/NavigationMenu.js';
-
-import 'normalize.css';    /* 重置浏览器默认样式 */
+import {
+  Layout,
+  Menu,
+  BackTop
+} from 'antd';
+const {
+  Header,
+  Content,
+  Footer
+} = Layout;
 
 class App extends React.Component {
 
   render() {
-      const container = {
-        marginTop: "7%", marginLeft: "2%",
-        marginRight: "2%", marginBottom: "3%",backgroundColor:"white",height:"100px"
-      }
+    const minHeight = document.documentElement.clientHeight - 130;
 
-      return (
-        <div>
-          <Header></Header>
-          <div>
-              {this.props.children}
-          </div>
-        </div>
-      )
+    return (
+      <Layout className="layout">
+          <BackTop />
+          <Header>
+                <Menu
+                    theme="dark"
+                    mode="horizontal"
+                    defaultSelectedKeys={['1']}
+                    style={{ lineHeight: '64px' }}
+                >
+                <Menu.Item key="1"><Link to="/">主页</Link></Menu.Item>
+                <Menu.Item key="2"><Link to="/article">文章</Link></Menu.Item>
+                <Menu.Item key="3"><Link to="/info">关于</Link></Menu.Item>
+              </Menu>
+          </Header>
+          <Content className='content'>
+            <div className='content-wrapper' style={{ minHeight: minHeight }}>{this.props.children}</div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            blog ©2017 Created by wool
+          </Footer>
+      </Layout>
+    )
+
   }
 }
 
-/*const mapStateToProps = state => ({
-    menu: state.menu,
-    header: state.header
-});
-
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actions, dispatch)
-});
-
- export default connect(mapStateToProps, mapDispatchToProps)(App);*/
 module.exports = App;
