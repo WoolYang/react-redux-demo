@@ -2,35 +2,30 @@
 
 let actions = {
 
-    openMenu: (text) => ({   //打开关闭菜单
-        type: 'OPEN_MENU',
-        text
-    }),
-
-    getArticleList: (dispatch) => {  //获取文章列表
+    getArticleList: () => { //获取文章列表
         return (dispatch) => {
-        	fetch('/data/test.json')
-		    .then(response => response.json())
-		    .then(json => dispatch(actions.receiveArticleList(json)))
+            fetch('/api/getArticleList')
+                .then(response => response.json())
+                .then(json => dispatch(actions.receiveArticleList(json)))
         }
     },
 
-    receiveArticleList: (json) => ({  //接收文章列表
-    	 type: 'RECEIVE_ARTICLE_LIST',
-    	 json
+    receiveArticleList: (json) => ({ //接收文章列表
+        type: 'RECEIVE_ARTICLE_LIST',
+        json
     }),
 
-    getArticleDetail: (dispatch) => {  //获取文章列表
+    getArticleDetailById: (id) => { //获取文章内容
         return (dispatch) => {
-            fetch('/data/detail.json')
-            .then(response => response.json())
-            .then(json => dispatch(actions.receiveArticleDetail(json)))
+            fetch('/api/getArticleDetailById?id=' + id)
+                .then(response => response.json())
+                .then(json => dispatch(actions.receiveArticleDetailById(json)))
         }
     },
 
-    receiveArticleDetail: (json) => ({  //接收文章列表
-         type: 'RECEIVE_ARTICLE_DETAIL',
-         json
+    receiveArticleDetailById: (json) => ({ //接收文章内容
+        type: 'RECEIVE_ARTICLE_DETAIL',
+        json
     })
 };
 

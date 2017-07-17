@@ -21,9 +21,9 @@ class Catalog extends React.Component {
         	{
                 articleData.result.map(function(item, index) {
                     return (
-                        <Link to={`/detail/${item._id}`} key={index} >
+                        <Link to = {{pathname:`/detail/${item._id}`, query:{_id:item._id}}} key={index}>
                           <Card title={item.title} style={{ width: '100%',marginBottom: '20px'}}>
-                            <p>{item.secondaryText}</p>
+                            <p>{item.secondary}</p>
                           </Card>
                         </Link>
                     )

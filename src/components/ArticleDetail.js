@@ -13,7 +13,8 @@ import '../assets/styles/articleDetail.less';
 class ArticleDetail extends React.Component {
 
     componentDidMount() {
-        this.props.actions.getArticleDetail();
+        let searchKey = this.props.location.query._id;
+        this.props.actions.getArticleDetailById(searchKey);
     }
 
     render() {

@@ -1,24 +1,43 @@
+var mongoose = require('mongoose'); //导入mongoose模块
+
+var {
+    getArticleList,
+    getArticleDetailById
+} = require('../model/article'); //导入模型数据模块
+
+
 //获取文章列表
-exports.articleList = function(req, res) {
-  req.setMaxListeners(0)
-    res.send({
-        ok: true,
-        result: result
+exports.getArticleList = (req, res) => {
+    getArticleList((err, doc) => {
+        if (err) {
+            res.send({
+                ok: false,
+                result: err
+            })
+        } else {
+            res.send({
+                ok: true,
+                result: doc
+            })
+        }
+
     })
 }
 
-//模拟数据
-var result = [
-  {
-    "_id":"1",
-    "title":"this is a title server",
-    "secondaryText":"ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?",
-    "avatar":"muidocs-icon-communication-voicemail"
-  },
-  {
-    "_id":"2",
-    "title":"this is a title",
-    "secondaryText":"ll be in your neighborhood doing errands this weekend. Do you want to grab brunch?",
-    "avatar":"muidocs-icon-communication-voicemail"
-  }
- ]
+//获取文章详情
+exports.getArticleDetailById = (req, res) => {
+    getArticleDetailById(req.query.id, (err, doc) => {
+        if (err) {
+            res.send({
+                ok: false,
+                result: err
+            })
+        } else {
+            res.send({
+                ok: true,
+                result: doc
+            })
+        }
+
+    })
+}
