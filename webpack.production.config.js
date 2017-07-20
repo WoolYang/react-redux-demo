@@ -4,6 +4,7 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
+    devtool: 'eval-source-map', //开发环境使用
     entry: {
         app: ['webpack-hot-middleware/client', path.resolve(__dirname, './src/index.js')]
             //    vendors:['react']

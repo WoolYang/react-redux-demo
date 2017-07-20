@@ -26,17 +26,22 @@ class Article extends React.Component {
         this.props.actions.getArticleList();
     }
 
+    getArticleListByTag(event) {
+        console.log(event)
+        alert(1111);
+        this.props.actions.getArticleListByTag();
+    }
+
     render() {
         const {
             articleData
         } = this.props;
-
         const dataSource = ['Burns Bay Road', 'Downing Street', 'Wall Street'];
 
         return (
             <Row gutter={16}>
                 <Col xs={24} md={18} >
-                    <Catalog articleData={articleData}></Catalog>
+                    <Catalog articleData={articleData} ></Catalog>
                 </Col>
                 <Col xs={0} md={6} >
                     <Card className='panel' noHovering='false' >
@@ -48,7 +53,7 @@ class Article extends React.Component {
                           filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                         />
                     </Card>
-                    <TagPanel></TagPanel>
+                    <TagPanel data={articleData.result} handleClick={this.getArticleListByTag.bind(this)} ></TagPanel>
                     <Card className='panel' noHovering='false' >
                         <p>文章归档</p>
                         <p>2017-10-10</p>

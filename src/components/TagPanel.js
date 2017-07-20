@@ -7,23 +7,52 @@ import {
 
 var icon = require('../assets/images/icon.jpg');
 
-class Catalog extends React.Component {
+class TagPanel extends React.Component {
 
     render() {
 
+        const colorList = ['pink', 'red', 'orange', 'green', 'cyan', 'blue', 'purple'];
+        const tagSet = new Set();
+        const {
+            data,
+            name,
+            handleClick
+        } = this.props;
+
+        data.forEach(item => tagSet.add(item.tag));
+
+
         return (
             <Card className='panel' noHovering='false'>
-                <p>文章分类</p>
-                <Tag color="pink-inverse">css</Tag>
-                <Tag color="red-inverse">react</Tag>
-                <Tag color="orange-inverse">vue</Tag>
-                <Tag color="green-inverse">jquery</Tag>
-                <Tag color="cyan-inverse">typescript</Tag>
-                <Tag color="blue-inverse">设计模式</Tag>
-                <Tag color="purple-inverse">算法</Tag>
+                <p>{name}</p>
+                {
+                    Array.from(tagSet).map(function(item, index) {
+                        return (
+                <Tag color={`${colorList[index]}-inverse`}  onClick={handleClick.bind(this)} >{item}</Tag>
+                        )
+
+                    })
+                }
             </Card>
         )
     }
 }
 
-module.exports = Catalog;
+TagPanel.defaultProps = {
+    data: [],
+    handleClick: function() {},
+    name: '文章分类'
+}
+
+module.exports = TagPanel;
+
+/*<Card className='panel' noHovering='false'>
+<p>文章分类</p>
+<Tag color="pink-inverse">css</Tag>
+<Tag color="red-inverse">react</Tag>
+<Tag color="orange-inverse">vue</Tag>
+<Tag color="green-inverse">jquery</Tag>
+<Tag color="cyan-inverse">typescript</Tag>
+<Tag color="blue-inverse">设计模式</Tag>
+<Tag color="purple-inverse">算法</Tag>
+</Card>*/

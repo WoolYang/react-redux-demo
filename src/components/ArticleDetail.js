@@ -26,7 +26,7 @@ class ArticleDetail extends React.Component {
             {
                 articleData.result.map(function(item,index){
                     return ( 
-                    <div key={index} dangerouslySetInnerHTML={{__html:item.content}} /> 
+                        <div key={index} dangerouslySetInnerHTML={{__html:item.content}} /> 
                     )
 
                 })

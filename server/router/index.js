@@ -2,13 +2,32 @@ var mongoose = require('mongoose'); //导入mongoose模块
 
 var {
     getArticleList,
-    getArticleDetailById
+    getArticleDetailById,
+    getArticleListByTag
 } = require('../model/article'); //导入模型数据模块
 
 
 //获取文章列表
 exports.getArticleList = (req, res) => {
     getArticleList((err, doc) => {
+        if (err) {
+            res.send({
+                ok: false,
+                result: err
+            })
+        } else {
+            res.send({
+                ok: true,
+                result: doc
+            })
+        }
+
+    })
+}
+
+//标签获取文章列表
+exports.getArticleListByTag = (req, res) => {
+    getArticleListByTag(req.query.tag, (err, doc) => {
         if (err) {
             res.send({
                 ok: false,

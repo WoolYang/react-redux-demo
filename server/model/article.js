@@ -27,6 +27,12 @@ function getArticleList(callback) {
     return Article.find().exec(callback);
 }
 
+function getArticleListByTag(tag, callback) {
+    return Article.find({
+        tag: tag
+    }).exec(callback);
+}
+
 function getArticleDetailById(id, callback) {
     return Article.find({
         _id: id
@@ -35,5 +41,6 @@ function getArticleDetailById(id, callback) {
 
 module.exports = {
     getArticleList,
-    getArticleDetailById
+    getArticleDetailById,
+    getArticleListByTag
 };

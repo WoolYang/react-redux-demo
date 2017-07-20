@@ -15,6 +15,19 @@ let actions = {
         json
     }),
 
+    getArticleListByTag: (tag) => { //标签获取文章列表
+        return (dispatch) => {
+            fetch('/api/getArticleListByTag?tag=' + tag)
+                .then(response => response.json())
+                .then(json => dispatch(actions.receiveArticleList(json)))
+        }
+    },
+
+    receiveArticleListByTag: (json) => ({ //标签接收文章列表
+        type: 'RECEIVE_ARTICLE_LIST_TAG',
+        json
+    }),
+
     getArticleDetailById: (id) => { //获取文章内容
         return (dispatch) => {
             fetch('/api/getArticleDetailById?id=' + id)

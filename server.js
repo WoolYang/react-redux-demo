@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // 定义所有的增删改查的借口
 app.use('/api/getArticleList', router.getArticleList);
 app.use('/api/getArticleDetailById', router.getArticleDetailById);
+app.use('/api/getArticleListByTag', router.getArticleListByTag);
 
 
 http.createServer(app).listen(app.get('port'), function() {
