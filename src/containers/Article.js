@@ -6,7 +6,7 @@ import {
 import {
     bindActionCreators
 } from 'redux'; //绑定dispatch和action
-import actions from '../actions/action';
+import * as actions from '../actions/action';
 
 import {
     Row,
@@ -19,22 +19,21 @@ import TagPanel from '../components/TagPanel.js';
 
 import '../assets/styles/article.less';
 
-
 class Article extends React.Component {
 
     componentDidMount() {
         this.props.actions.getArticleList();
+        this.props.actions.getArticleTag();
     }
 
-    getArticleListByTag(event) {
-        console.log(event)
-        alert(1111);
-        this.props.actions.getArticleListByTag();
+    handleClick(tag) {
+        this.props.actions.getArticleListByTag(tag);
     }
 
     render() {
         const {
-            articleData
+            articleData,
+            tagData
         } = this.props;
         const dataSource = ['Burns Bay Road', 'Downing Street', 'Wall Street'];
 
@@ -53,7 +52,7 @@ class Article extends React.Component {
                           filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                         />
                     </Card>
-                    <TagPanel data={articleData.result} handleClick={this.getArticleListByTag.bind(this)} ></TagPanel>
+                    <TagPanel data={tagData.result} handleClick={this.handleClick.bind(this)} ></TagPanel>
                     <Card className='panel' noHovering='false' >
                         <p>文章归档</p>
                         <p>2017-10-10</p>
@@ -68,7 +67,8 @@ class Article extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    articleData: state.articleData
+    articleData: state.articleData,
+    tagData: state.tagData
 });
 
 const mapDispatchToProps = dispatch => ({

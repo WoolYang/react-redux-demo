@@ -25,10 +25,11 @@ class TagPanel extends React.Component {
         return (
             <Card className='panel' noHovering='false'>
                 <p>{name}</p>
+                {this.props.show && <Tag color="blue-inverse"  onClick={handleClick.bind(this, 'all')}>全部</Tag>}
                 {
                     Array.from(tagSet).map(function(item, index) {
                         return (
-                <Tag color={`${colorList[index]}-inverse`}  onClick={handleClick.bind(this)} >{item}</Tag>
+                            <Tag color={`${colorList[index]}-inverse`}  onClick={handleClick.bind(this, item)}>{item}</Tag>
                         )
 
                     })
@@ -41,7 +42,8 @@ class TagPanel extends React.Component {
 TagPanel.defaultProps = {
     data: [],
     handleClick: function() {},
-    name: '文章分类'
+    name: '文章分类',
+    show: true
 }
 
 module.exports = TagPanel;

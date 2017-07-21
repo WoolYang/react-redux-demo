@@ -38,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/api/getArticleList', router.getArticleList);
 app.use('/api/getArticleDetailById', router.getArticleDetailById);
 app.use('/api/getArticleListByTag', router.getArticleListByTag);
+app.use('/api/getArticleTag', router.getArticleTag);
 
 
 http.createServer(app).listen(app.get('port'), function() {

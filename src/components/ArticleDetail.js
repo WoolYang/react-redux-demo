@@ -6,7 +6,7 @@ import {
 import {
     bindActionCreators
 } from 'redux';
-import actions from '../actions/action';
+import * as actions from '../actions/action';
 
 import '../assets/styles/articleDetail.less';
 
